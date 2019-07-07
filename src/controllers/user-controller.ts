@@ -17,7 +17,7 @@ export class UserController {
 
   @Get()
   private async getUsers(req: Request, res: Response, next: NextFunction) {
-    if (req.isUnauthenticated) {
+    if (req.isUnauthenticated()) {
       res.send('Please login');
     }
 
@@ -38,8 +38,11 @@ export class UserController {
    */
   @Get(':id')
   private async getUser(req: Request, res: Response, next: NextFunction) {
-    Logger.Info('The logged in user is', req.user);
-    Logger.Info(req.params.id);
+    Logger.Info('The logged in user is');
+
+    if (req.isUnauthenticated()) {
+      res.send('Please login');
+    }
 
     try {
       res.send(req.user);
@@ -58,7 +61,10 @@ export class UserController {
 
   @Get('logout')
   private async performLogout(req: Request, res: Response, next: NextFunction) {
-    
+    if (req.isUnauthenticated()) {
+      res.send('Please login');
+    }
+
     req.logout();
 
     return res.send(req.user);
@@ -67,6 +73,10 @@ export class UserController {
   @Put()
   public async putUser(req: Request, res: Response, next: NextFunction) {
     Logger.Info('Updating user');
+
+    if (req.isUnauthenticated()) {
+      res.send('Please login');
+    }
 
     const { password, password2, name, email } = req.body;
 
@@ -114,6 +124,10 @@ export class UserController {
 
   @Delete()
   private async delUser(req: Request, res: Response, next: NextFunction) {
+    if (req.isUnauthenticated()) {
+      res.send('Please login');
+    }
+
     try {
       const user = await User.deleteOne({
         _id: req.body.id,

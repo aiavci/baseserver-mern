@@ -52,12 +52,18 @@ export class BlogController {
 
   @Put()
   private async putBlog(req: Request, res: Response, next: NextFunction) {
+    if (req.isUnauthenticated()) {
+      return res.send('Please login');
+    }
+
+    const { id, title, body } = req.body;
+
     try {
       const blog = await Blog.update({
-        _id: req.body.id,
+        _id: id,
       }, {
-        title: req.body.title,
-        body: req.body.body,
+        title,
+        body,
       });
 
       return res.send(blog);
