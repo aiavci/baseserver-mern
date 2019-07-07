@@ -9,8 +9,6 @@ const connectDb = () => {
   return mongoose.connect(dbUrl, {useNewUrlParser: true});
 };
 
-const models = { User, Blog };
-
 export { connectDb };
 
-export default models;
+export { User, Blog };

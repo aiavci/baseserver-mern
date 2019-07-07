@@ -7,9 +7,7 @@ import * as controllers from './controllers';
 
 import '../env/loadEnv';
 
-import { connectDb } from './models';
-
-import { User } from './models/user';
+import { connectDb, User } from '@models';
 
 import { Server } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';

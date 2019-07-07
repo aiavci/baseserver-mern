@@ -2,17 +2,17 @@
  * Copyright (c) 2019 Ali I. Avci
  */
 
+import {Blog} from '@models';
 import { Controller, Delete, Get, Post, Put } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
 import { NextFunction, Request, Response } from 'express';
-import Blog from 'src/models/blog';
 
 @Controller('api/blog')
 export class BlogController {
 
   /**
    * Get all blogs
-   * 
+   *
    * @param req HTTP request
    * @param res HTTP response
    */
@@ -31,7 +31,7 @@ export class BlogController {
 
   /**
    * Get blog with [id] param
-   * 
+   *
    * @param req HTTP request
    * @param res HTTP response
    */
