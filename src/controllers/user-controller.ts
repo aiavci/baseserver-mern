@@ -10,16 +10,15 @@ import { NextFunction, Request, Response } from 'express';
 
 import passport = require('passport');
 
-import { User } from 'src/models/user';
+import { User } from '@models';
 
 @Controller('api/user')
 export class UserController {
 
   @Get()
   private async getUsers(req: Request, res: Response, next: NextFunction) {
-    Logger.Info('Getting all users isAuthenticated: ' + req.isAuthenticated());
-    if (!req.isAuthenticated()) {
-      res.send("Please login");
+    if (req.isUnauthenticated) {
+      res.send('Please login');
     }
 
     try {

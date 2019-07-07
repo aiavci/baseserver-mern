@@ -13,14 +13,14 @@
     "target": "es6",
     "moduleResolution": "node",
     "paths": {
-      "@entities": [
-        "src/entities"
+      "@models": [
+        "src/models"
       ],
       "@shared": [
         "src/shared"
       ],
-      "@server": [
-        "src/Server"
+      "@controllers": [
+        "src/controllers"
       ]
     },
     "types": [
